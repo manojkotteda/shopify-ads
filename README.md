@@ -1,46 +1,111 @@
-# Getting Started with Create React App
+# Shopify Ad Uploader
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
+Shopify Ad Uploader is a web application that allows users to submit Shopify product URLs and images for advertisement purposes. The frontend is built using **React (TypeScript)** and **Material UI**, while the backend is powered by **FastAPI**.
 
-## Available Scripts
+## Features
+- **User Authentication**: Users must log in before accessing the uploader.
+- **Secure Session Management**: Uses `sessionStorage` to manage authentication.
+- **Product Upload**: Users can upload a Shopify product URL along with an image.
+- **Responsive UI**: Designed with Material UI for a clean, modern look.
+- **API Integration**: Communicates with a FastAPI backend to store product details.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🚀 Setup Guide
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 1. Clone the Repository
+```sh
+  git clone https://github.com/yourusername/shopify-ad-uploader.git
+  cd shopify-ad-uploader
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 2. Install Dependencies
+Ensure you have **Node.js** installed (recommended version `>=16.x.x`).
+```sh
+  npm install
+```
 
-### `npm test`
+### 3. Start the Frontend
+```sh
+  npm start
+```
+The application will be available at `http://localhost:3000`.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 4. Start the Backend (FastAPI)
+Ensure **Python** (`>=3.8`) is installed. Navigate to the backend directory:
+```sh
+  cd backend
+  pip install -r requirements.txt
+  uvicorn main:app --reload
+```
+The API will be available at `http://localhost:8000`.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🔥 Usage Guide
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 1. Login
+- Visit `http://localhost:3000`.
+- Enter your credentials and click **Sign In**.
+- Upon successful login, you will be redirected to `/upload`.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 2. Upload a Product
+- Enter a **Shopify product URL**.
+- Click **Upload Image** and select a product image.
+- Click **Submit** to send the data to the backend.
+- A success notification will appear upon completion.
 
-### `npm run eject`
+### 3. Logout
+- Click the **Logout** button to remove session data and return to the login page.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+---
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 📡 API Documentation
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### **1. User Authentication**
+**POST** `/api/v1/auth/login`
+```json
+{
+  "email": "user@example.com",
+  "password": "password123"
+}
+```
+**Response:**
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI..."
+}
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### **2. Submit a Product**
+**POST** `/api/v1/save-product`
+```json
+{
+  "user_id": "12345",
+  "url": "https://shopify.com/products/example",
+  "image": "data:image/png;base64,iVBORw0KGg..."
+}
+```
+**Response:**
+```json
+{
+  "message": "Product saved successfully",
+  "data": {
+    "user_id": "12345",
+    "url": "https://shopify.com/products/example",
+    "image": "uploaded_image_url"
+  }
+}
+```
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 💡 Contributing
+We welcome contributions!
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
+
+## 📜 License
+This project is licensed under the **MIT License**.
+

@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { TextField, Button, Card, CardContent, Typography, Snackbar, Alert, CssBaseline, Box, FormControl, FormLabel, Stack } from "@mui/material";
 import { CloudUpload } from "@mui/icons-material";
 import { styled } from "@mui/material/styles";
-import { motion } from "framer-motion";
 import { saveProduct } from "../src/apiServices/apiService";
 import AppTheme from "./shared-theme/AppTheme";
 import ColorModeSelect from "./shared-theme/ColorModeSelect";
