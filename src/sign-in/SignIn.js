@@ -91,17 +91,21 @@ export default function SignIn(props) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log("Before check, isSigningIn:", isSigningIn);
-
+  
     if (emailError || passwordError) {
       return;
     }
-
+  
     if (!isSigningIn) {
       setIsSigningIn(true);
       try {
-        await doSignInWithEmailAndPassword(email, password); // Authenticate user
+        const response = await doSignInWithEmailAndPassword(email, password);
         console.log("Login successful");
-        navigate("/upload"); // Redirect user to upload page
+  
+        // Assuming response contains a token, store it in sessionStorage
+        sessionStorage.setItem("userToken", response.token || "dummyToken");
+  
+        navigate("/upload"); // Redirect to the upload page
       } catch (error) {
         console.error("Login failed:", error);
         setErrorMessage("Invalid email or password.");
