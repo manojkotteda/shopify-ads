@@ -103,7 +103,7 @@ export default function SignIn(props) {
         console.log("Login successful");
   
         // Assuming response contains a token, store it in sessionStorage
-        sessionStorage.setItem("userToken", response.token || "dummyToken");
+        sessionStorage.setItem("userToken", response.user.getIdToken || "dummyToken");
   
         navigate("/upload"); // Redirect to the upload page
       } catch (error) {
